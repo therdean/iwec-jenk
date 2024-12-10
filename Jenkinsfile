@@ -9,13 +9,12 @@ pipeline {
         stage('Freestyle Job Simulation') {
             steps {
                 script {
-                    echo 'Executing shell script for system status report...'
-                    sh '''
-                    echo "System Status Report"
-                    uname -a
-                    df -h
-                    '''
-                }
+                    echo 'Executing system status report on Windows...'
+                    bat '''
+                    echo System Status Report
+                    systeminfo
+                    wmic logicaldisk get size,freespace,caption
+                    '''                }
             }
         }
 

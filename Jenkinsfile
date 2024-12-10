@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        EMAIL_RECIPIENT = 'your-email@example.com'
+        EMAIL_RECIPIENT = 'dejanristevski96@gmail.com'
     }
 
     stages {
@@ -21,8 +21,7 @@ pipeline {
 
         stage('Automate GitHub Repository Pull') {
             steps {
-                git url: 'https://github.com/your-username/your-repo.git', branch: 'main', credentialsId: 'github-pat'
-                sh 'ls -l'
+                git url: 'https://github.com/therdean/iwec-jenk.git', branch: 'main', credentialsId: 'github-pat'
             }
         }
 
@@ -43,29 +42,6 @@ pipeline {
                     body: "Pipeline build status: ${currentBuild.currentResult}",
                     to: "${env.EMAIL_RECIPIENT}"
                 )
-            }
-        }
-
-        stage('Parallel File Copy') {
-            parallel {
-                stage('Copy to Location A') {
-                    steps {
-                        script {
-                            if (currentBuild.currentResult == 'SUCCESS') {
-                                sh 'echo "Copying files to Location A..."'
-                            }
-                        }
-                    }
-                }
-                stage('Copy to Location B') {
-                    steps {
-                        script {
-                            if (currentBuild.currentResult == 'SUCCESS') {
-                                sh 'echo "Copying files to Location B..."'
-                            }
-                        }
-                    }
-                }
             }
         }
     }

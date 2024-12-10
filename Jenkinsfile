@@ -25,16 +25,6 @@ pipeline {
             }
         }
 
-        stage('Declarative Pipeline Tasks') {
-            steps {
-                echo 'Exploring Declarative Pipeline concepts...'
-                sh '''
-                echo "Checkout phase completed."
-                echo "Build phase simulated."
-                '''
-            }
-        }
-
         stage('Send Notifications') {
             steps {
                 emailext(

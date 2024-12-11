@@ -3,9 +3,6 @@ pipeline {
 
     environment {
         EMAIL_RECIPIENT = 'dejanristevski96@gmail.com'
-
-
-        // 
     }
 
     stages {
